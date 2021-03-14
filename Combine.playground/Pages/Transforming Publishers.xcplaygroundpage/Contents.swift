@@ -15,6 +15,6 @@ myLabel.text
     })
     .sink { string in
         myLabel.text = string
-}
+    }
 
 myLabel.text

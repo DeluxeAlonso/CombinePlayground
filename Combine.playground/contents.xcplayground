@@ -3,5 +3,6 @@
     <pages>
         <page name='Publishers and Subscribers'/>
         <page name='Tranforming Publishers'/>
+        <page name='Stream lifecycle - AnyCancellable'/>
     </pages>
 </playground>
