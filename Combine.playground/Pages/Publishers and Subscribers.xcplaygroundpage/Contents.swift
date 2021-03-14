@@ -1,8 +1,6 @@
 import UIKit
 import Combine
 
-let publisher = [1, 2, 3].publisher
-
 [1, 2, 3].publisher.sink(receiveCompletion: { completion in
     print("Completed \(completion)")
 }) { value in
@@ -57,6 +55,7 @@ NotificationCenter.default.post(Notification(name: myNotification))
 
 // MARK: - Other Publisher examples
 
+let sequencePublisher = [1, 2, 3, 4, 5].publisher
 let myUrl = URL(string: "https://www.google.com")!
 let dataTaskPublisher = URLSession.shared.dataTaskPublisher(for: myUrl)
 

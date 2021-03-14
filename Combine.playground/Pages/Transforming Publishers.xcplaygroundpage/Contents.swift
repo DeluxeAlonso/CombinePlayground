@@ -12,7 +12,7 @@ myLabel.text
 [1, 2, 3].publisher
     .map({ int in
         return "Current value: \(int)"
-    })
+    }) // map returns a Publishers.Sequence<[String], Never>
     .sink { string in
         myLabel.text = string
     }
