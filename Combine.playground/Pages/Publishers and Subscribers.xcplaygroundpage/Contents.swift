@@ -12,26 +12,26 @@ let publisher = [1, 2, 3].publisher
 // MARK: - Handling errors
 
 [1, 2, 3].publisher.sink(receiveCompletion: { completion in
-  switch completion {
-  case .finished:
-    print("finished succesfully")
-  case .failure(let error):
-    print(error)
-  }
+    switch completion {
+    case .finished:
+        print("finished succesfully")
+    case .failure(let error):
+        print(error)
+    }
 }, receiveValue: { value in
-  print("received a value: \(value)")
+    print("received a value: \(value)")
 })
 
 // MARK: - Sink Shorthand - This shorthand version of sink only works for publishers that never fail.
 
 [1, 2, 3].publisher.sink(receiveValue: { value in
-  print("received a value: \(value)")
+    print("received a value: \(value)")
 })
 
 // MARK: - Assign
 
 class User {
-  var email = "default"
+    var email = "default"
 }
 
 var user = User()
@@ -44,12 +44,12 @@ print(user.email)
 let myNotification = Notification.Name("com.alonso.myNotification")
 
 func listenToNotifications() {
-  NotificationCenter.default.publisher(for: myNotification)
-    .sink(receiveValue: { notification in
-      print("Received a notification!")
-    })
+    NotificationCenter.default.publisher(for: myNotification)
+        .sink(receiveValue: { notification in
+            print("Received a notification!")
+        })
 
-  NotificationCenter.default.post(Notification(name: myNotification))
+    NotificationCenter.default.post(Notification(name: myNotification))
 }
 
 listenToNotifications()
