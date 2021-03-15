@@ -46,7 +46,7 @@ func listenToNotifications() {
         .sink(receiveValue: { notification in
             print("Received a notification!")
         })
-
+    
     NotificationCenter.default.post(Notification(name: myNotification))
 }
 
