@@ -58,11 +58,11 @@ var baseURL = URL(string: "https://www.google.com")!
         let url = baseURL.appendingPathComponent(path)
         return URLSession.shared.dataTaskPublisher(for: url)
     })
-    .sink(receiveCompletion: { completion in
+    .sink { completion in
         print("Completed with: \(completion)")
-    }, receiveValue: { result in
+    } receiveValue: { result in
         print(result)
-    })
+    }
 
 var cancellables = Set<AnyCancellable>()
 
@@ -72,8 +72,8 @@ var cancellables = Set<AnyCancellable>()
         let url = baseURL.appendingPathComponent(path)
         return URLSession.shared.dataTaskPublisher(for: url)
     })
-    .sink(receiveCompletion: { completion in
+    .sink { completion in
         print("Completed with: \(completion)")
-    }, receiveValue: { result in
-        print(result)
-    }).store(in: &cancellables)
+    } receiveValue: { value in
+        print(value)
+    }.store(in: &cancellables)
