@@ -6,5 +6,6 @@
         <page name='Transforming Publishers'/>
         <page name='Limiting active Publishers'/>
         <page name='Failable operators'/>
+        <page name='Custom operators'/>
     </pages>
 </playground>
