@@ -18,15 +18,18 @@ NotificationCenter.default.post(Notification(name: myNotificationName))
 
 let myPassthroughSubjectNotificationName = Notification.Name("com.alonso.passthroughSubject.myNotification")
 
-let notificationSubjectPublisher = PassthroughSubject<Notification, Never>()
+// A subject is a publisher that exposes a method for outside callers to publish elements.
+// A PassthroughSubject is a subject that broadcasts elements to downstream subscribers.
+// All the values are discarded after they are sent.
+let notificationSubject = PassthroughSubject<Notification, Never>()
 
 NotificationCenter.default.addObserver(
     forName: myPassthroughSubjectNotificationName,
     object: nil, queue: nil) { notification in
-    notificationSubjectPublisher.send(notification)
+    notificationSubject.send(notification)
 }
 
-notificationSubjectPublisher.sink { notification in
+notificationSubject.sink { notification in
     print("Received a notification using PassthroughSubject!")
 }.store(in: &cancellables)
 
