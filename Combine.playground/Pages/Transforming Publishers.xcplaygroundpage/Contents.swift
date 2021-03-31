@@ -1,26 +1,20 @@
-import UIKit
+import Foundation
 import Combine
-
-let myLabel = UILabel()
 
 // MARK: - Map
 
 [1, 2, 3].publisher
     .sink(receiveValue: { int in
-        myLabel.text = "Current value: \(int)"
+        print("Current value: \(int)")
     })
-
-myLabel.text
 
 [1, 2, 3].publisher
     .map({ int in
         return "Current value: \(int)"
     }) // map returns a Publishers.Sequence<[String], Never>
     .sink { string in
-        myLabel.text = string
+        print(string)
     }
-
-myLabel.text
 
 // MARK: - Map and default values with replaceNil
 
