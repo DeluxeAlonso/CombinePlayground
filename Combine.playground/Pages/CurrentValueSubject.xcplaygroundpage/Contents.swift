@@ -18,10 +18,10 @@ class ListController {
     var cancellables = Set<AnyCancellable>()
 
     init() {
-        setupBindings()
+        setup()
     }
 
-    private func checkInitialValues() {
+    private func setup() {
         // CurrentValueSubject is always going to have an initial value
         print(viewModel.title)
     }
