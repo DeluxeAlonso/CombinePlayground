@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 import Combine
 
 [1, 2, 3].publisher.sink(receiveCompletion: { completion in
@@ -58,5 +58,3 @@ NotificationCenter.default.post(Notification(name: myNotification))
 let sequencePublisher = [1, 2, 3, 4, 5].publisher
 let myUrl = URL(string: "https://www.google.com")!
 let dataTaskPublisher = URLSession.shared.dataTaskPublisher(for: myUrl)
-
-let notificationCenterPusliher = NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
