@@ -19,15 +19,16 @@ class ListController {
 
     init() {
         setup()
+        setupBindings()
     }
 
     private func setup() {
         // CurrentValueSubject is always going to have an initial value
-        print(viewModel.title)
+        print(viewModel.title.value)
     }
 
     private func setupBindings() {
-        viewModel.title.sink { titleText in
+        viewModel.title.dropFirst().sink { titleText in
             print(titleText)
         }.store(in: &cancellables)
     }
