@@ -9,5 +9,6 @@
         <page name='Custom operators'/>
         <page name='PassthroughSubject'/>
         <page name='CurrentValueSubject'/>
+        <page name='Published'/>
     </pages>
 </playground>
