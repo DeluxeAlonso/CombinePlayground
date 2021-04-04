@@ -2,8 +2,6 @@ import Combine
 
 class ListViewModel {
 
-    // Published value will update its underlying value after emitting the value.
-    // CurrentValueSubject will update its value before emitting the value.
     @Published var title = "Test"
 
     func updateTitle(_ title: String) {
