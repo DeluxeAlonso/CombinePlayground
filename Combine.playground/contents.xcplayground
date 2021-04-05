@@ -10,5 +10,6 @@
         <page name='PassthroughSubject'/>
         <page name='CurrentValueSubject'/>
         <page name='Published'/>
+        <page name='Just'/>
     </pages>
 </playground>
