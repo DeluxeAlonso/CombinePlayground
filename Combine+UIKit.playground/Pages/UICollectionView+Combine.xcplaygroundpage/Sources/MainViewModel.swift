@@ -1,3 +1,4 @@
+import UIKit
 import Combine
 
 public class MainViewModel {
@@ -9,6 +10,11 @@ public class MainViewModel {
             ItemModel(id: "1", title: "1", description: "1"),
             ItemModel(id: "2", title: "2", description: "2")
         ]
+    }
+
+    public func fetchImage() -> AnyPublisher<UIImage, Never> {
+        let image = UIImage(systemName: "pencil")!
+        return Just(image).eraseToAnyPublisher()
     }
 
 }

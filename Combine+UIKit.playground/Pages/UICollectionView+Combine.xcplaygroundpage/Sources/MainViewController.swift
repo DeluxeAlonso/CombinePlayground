@@ -23,18 +23,27 @@ public class MainViewController: UICollectionViewController {
     }
 
     private func setupUI() {
-        collectionView.register(UICollectionViewListCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(CustomListCell.self, forCellWithReuseIdentifier: "Cell")
 
         let config = UICollectionLayoutListConfiguration(appearance: .grouped)
         let layout = UICollectionViewCompositionalLayout.list(using: config)
         collectionView.collectionViewLayout = layout
 
         dataSource = UICollectionViewDiffableDataSource<Section, ItemModel>(collectionView: collectionView) {
-            (collectionView, indexPath, item) -> UICollectionViewListCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? UICollectionViewListCell
+            (collectionView, indexPath, item) -> CustomListCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CustomListCell
             var content = UIListContentConfiguration.cell()
             content.text = item.title
-            cell?.contentConfiguration = content
+
+            cell.cancellable = self.viewModel.fetchImage()
+                .receive(on: DispatchQueue.main)
+                .sink(receiveCompletion: { completion in
+                    print("Loaded image for cell")
+                }, receiveValue: { image in
+                    cell.imageView.image = image
+                })
+
+            cell.contentConfiguration = content
             return cell
         }
     }
