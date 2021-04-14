@@ -7,4 +7,9 @@ public class CustomListCell: UICollectionViewListCell {
 
     public var cancellable: Cancellable?
 
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+    }
+
 }
