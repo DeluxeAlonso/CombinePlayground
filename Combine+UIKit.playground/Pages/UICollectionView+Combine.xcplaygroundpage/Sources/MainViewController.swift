@@ -3,9 +3,7 @@ import Combine
 
 public class MainViewController: UICollectionViewController {
 
-    enum Section {
-        case main
-    }
+    private var viewModel = MainViewModel()
 
     private var dataSource: UICollectionViewDiffableDataSource<Section, ItemModel>!
     private var cancellables = Set<AnyCancellable>()
@@ -18,16 +16,18 @@ public class MainViewController: UICollectionViewController {
         fatalError()
     }
 
-    var viewModel = MainViewModel()
-
     public override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+        setupBindings()
+    }
+
+    private func setupUI() {
+        collectionView.register(UICollectionViewListCell.self, forCellWithReuseIdentifier: "Cell")
+
         let config = UICollectionLayoutListConfiguration(appearance: .grouped)
         let layout = UICollectionViewCompositionalLayout.list(using: config)
         collectionView.collectionViewLayout = layout
-
-        collectionView.backgroundColor = .white
-        collectionView.register(UICollectionViewListCell.self, forCellWithReuseIdentifier: "Cell")
 
         dataSource = UICollectionViewDiffableDataSource<Section, ItemModel>(collectionView: collectionView) {
             (collectionView, indexPath, item) -> UICollectionViewListCell? in
@@ -37,19 +37,29 @@ public class MainViewController: UICollectionViewController {
             cell?.contentConfiguration = content
             return cell
         }
+    }
 
+    private func setupBindings() {
         viewModel.itemSubject
             .sink(receiveValue: self.applySnapshot)
             .store(in: &cancellables)
         viewModel.loadItems()
     }
 
-    func applySnapshot(_ models: [ItemModel]) {
+    private func applySnapshot(_ models: [ItemModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, ItemModel>()
         snapshot.appendSections([.main])
         snapshot.appendItems(models)
 
         dataSource.apply(snapshot)
+    }
+
+}
+
+extension MainViewController {
+
+    enum Section {
+        case main
     }
 
 }
