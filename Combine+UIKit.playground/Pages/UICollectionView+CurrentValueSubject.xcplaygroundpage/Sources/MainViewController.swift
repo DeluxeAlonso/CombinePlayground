@@ -35,6 +35,7 @@ public class MainViewController: UICollectionViewController {
             var content = UIListContentConfiguration.cell()
             content.text = item.title
 
+            // Subcribing cell to fetchImage method to update the image reactively.
             cell.cancellable = self.viewModel.fetchImage()
                 .receive(on: DispatchQueue.main)
                 .sink(receiveCompletion: { completion in
@@ -50,6 +51,7 @@ public class MainViewController: UICollectionViewController {
 
     private func setupBindings() {
         viewModel.itemSubject
+            .dropFirst()
             .sink(receiveValue: self.applySnapshot)
             .store(in: &cancellables)
         viewModel.loadItems()
