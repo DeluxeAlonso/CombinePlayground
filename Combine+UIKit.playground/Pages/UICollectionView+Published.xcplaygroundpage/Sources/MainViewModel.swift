@@ -1,21 +1,7 @@
 import Foundation
 import Combine
 
-public struct ItemModel: Hashable {
-
-    public let id: String
-    public let title: String
-    public let description: String
-
-    public init(id: String, title: String, description: String) {
-        self.id = id
-        self.title = title
-        self.description = description
-    }
-
-}
-
-enum APIError: Error {
+public enum APIError: Error {
 
     case notAuthenticated
     case notFound
@@ -25,7 +11,7 @@ enum APIError: Error {
 
 public class ItemClient {
 
-    func getItems() -> AnyPublisher<[ItemModel], APIError> {
+    public func getItems() -> AnyPublisher<[ItemModel], APIError> {
         Just([
             ItemModel(id: "1", title: "1", description: "1"),
             ItemModel(id: "3", title: "3", description: "3")
@@ -38,9 +24,9 @@ public class ItemClient {
 
 public class MainViewModel {
 
-    let client = ItemClient()
+    private let client = ItemClient()
 
-    @Published var items: [ItemModel] = []
+    @Published public var items: [ItemModel] = []
 
     public func loadItems() {
         client.getItems().map({
