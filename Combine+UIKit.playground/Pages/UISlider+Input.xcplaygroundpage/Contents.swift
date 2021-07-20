@@ -25,6 +25,7 @@ public class MainViewController: UIViewController {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.tintColor = .red
+        slider.maximumValue = 100
 
         return slider
     }()
@@ -50,6 +51,13 @@ public class MainViewController: UIViewController {
         NSLayoutConstraint.activate([
             slider.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
+
+        updateLabel()
+        slider.addTarget(self, action: #selector(updateLabel), for: .valueChanged)
+    }
+
+    @objc func updateLabel() {
+        label.text = "Slider is at \(slider.value)"
     }
 
 }
