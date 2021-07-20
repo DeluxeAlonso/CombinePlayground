@@ -1,5 +1,6 @@
 import PlaygroundSupport
 import UIKit
+import Combine
 
 public class MainViewController: UIViewController {
 
@@ -30,6 +31,12 @@ public class MainViewController: UIViewController {
         return slider
     }()
 
+    // We need this property because UISlider and others UIControl subclasses are not KVO compliant.
+    // Hence we cannot do something like slider.publisher(for: \.value)
+    @Published var sliderValue: Float = 50
+
+    var cancellables = Set<AnyCancellable>()
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -52,12 +59,25 @@ public class MainViewController: UIViewController {
             slider.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
 
+        $sliderValue
+            .receive(on: DispatchQueue.main)
+            .map({ value in
+                "Slider is at \(value)"
+            })
+            .assign(to: \.text, on: label)
+            .store(in: &cancellables)
+
+        $sliderValue
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.value, on: slider)
+            .store(in: &cancellables)
+
         updateLabel()
         slider.addTarget(self, action: #selector(updateLabel), for: .valueChanged)
     }
 
     @objc func updateLabel() {
-        label.text = "Slider is at \(slider.value)"
+        sliderValue = slider.value
     }
 
 }

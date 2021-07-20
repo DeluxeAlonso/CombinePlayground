@@ -4,6 +4,6 @@
         <page name='Published+Assign'/>
         <page name='UICollectionView+CurrentValueSubject'/>
         <page name='UICollectionView+Published'/>
-        <page name='Responding to user input'/>
+        <page name='UISlider+Input'/>
     </pages>
 </playground>
