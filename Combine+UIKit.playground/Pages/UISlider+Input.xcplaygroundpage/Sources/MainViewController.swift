@@ -74,7 +74,7 @@ public class MainViewController: UIViewController {
     }
 
     @objc func updateLabel() {
-        sliderValue = slider.value
+        viewModel.sliderValue = slider.value
     }
 
 }
