@@ -8,6 +8,7 @@ class MainViewController: UIViewController {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 16.0
 
         return stackView
     }()
