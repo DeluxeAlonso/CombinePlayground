@@ -3,7 +3,7 @@ import PlaygroundSupport
 
 class MainViewController: UIViewController {
 
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
         return stackView
     }()
 
-    lazy var label: UILabel = {
+    private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Test"
@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
         return label
     }()
 
-    lazy var textfield: UITextField = {
+    private lazy var textfield: UITextField = {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .bezel
