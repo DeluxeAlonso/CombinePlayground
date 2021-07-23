@@ -3,7 +3,7 @@ import Combine
 
 public class MainViewController: UIViewController {
 
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -12,7 +12,7 @@ public class MainViewController: UIViewController {
         return stackView
     }()
 
-    lazy var label: UILabel = {
+    private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Test"
@@ -21,7 +21,7 @@ public class MainViewController: UIViewController {
         return label
     }()
 
-    lazy var slider: UISlider = {
+    private lazy var slider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.tintColor = .red
