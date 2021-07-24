@@ -58,9 +58,11 @@ class MainViewController: UIViewController {
         textfield.addTarget(self, action: #selector(textChanged), for: .editingChanged)
 
         // Wait 1 sec for the user to stop typing and have at least 3 characters typed.
+        // We use removeDuplicates() method to avoid processing the same input more than once.
         $searchQuery
             .debounce(for: 1.0, scheduler: DispatchQueue.main)
             .filter({ ($0 ?? "").count > 3 })
+            .removeDuplicates()
             .assign(to: \.text, on: label)
             .store(in: &cancellables)
     }
