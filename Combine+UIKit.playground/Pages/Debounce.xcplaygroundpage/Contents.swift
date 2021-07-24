@@ -17,7 +17,6 @@ class MainViewController: UIViewController {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Test"
         label.textAlignment = .center
 
         return label
@@ -32,6 +31,7 @@ class MainViewController: UIViewController {
     }()
 
     @Published var searchQuery: String?
+
     var cancellables = Set<AnyCancellable>()
 
     public override func viewDidLoad() {
