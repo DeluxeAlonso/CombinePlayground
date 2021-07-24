@@ -1,4 +1,5 @@
 import UIKit
+import Combine
 import PlaygroundSupport
 
 class MainViewController: UIViewController {
@@ -30,6 +31,9 @@ class MainViewController: UIViewController {
         return textfield
     }()
 
+    @Published var searchQuery: String?
+    var cancellables = Set<AnyCancellable>()
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -50,6 +54,16 @@ class MainViewController: UIViewController {
         NSLayoutConstraint.activate([
             textfield.widthAnchor.constraint(equalTo: stackView.widthAnchor)
         ])
+
+        textfield.addTarget(self, action: #selector(textChanged), for: .editingChanged)
+        $searchQuery
+            .debounce(for: 1.0, scheduler: DispatchQueue.main)
+            .assign(to: \.text, on: label)
+            .store(in: &cancellables)
+    }
+
+    @objc func textChanged() {
+        searchQuery = textfield.text
     }
 
 }
