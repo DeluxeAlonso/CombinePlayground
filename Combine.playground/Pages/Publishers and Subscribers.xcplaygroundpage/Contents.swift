@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 
+// Sink method is used to observe values received by the publisher.
 [1, 2, 3].publisher.sink(receiveCompletion: { completion in
     print("Completed \(completion)")
 }) { value in
