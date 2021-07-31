@@ -36,3 +36,23 @@ NotificationCenter.default.post(firstNotification)
 
 print("Post fourth")
 NotificationCenter.default.post(secondNotification)
+
+// MARK: - Publishers.Zip Order matching behavior
+
+// Zip handles the emitted values in order. The first value of the first publisher
+// is matched with the first value of the second publisher.
+
+let publisherA = CurrentValueSubject<Int, Never>(0)
+let publisherB = CurrentValueSubject<Int, Never>(0)
+
+let _ = Publishers.Zip(publisherA, publisherB)
+    .sink { value in
+        print(value)
+    }.store(in: &cancellables)
+
+publisherA.value = 1
+publisherA.value = 2
+publisherA.value = 3
+
+publisherB.value = 1
+publisherB.value = 2
