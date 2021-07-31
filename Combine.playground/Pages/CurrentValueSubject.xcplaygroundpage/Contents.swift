@@ -2,8 +2,10 @@ import Combine
 
 struct ListViewModel {
 
+    // A subject is a publisher that exposes a method for outside callers to publish elements.
     // CurrentValueSubject is a subject that wraps a single value
     // and publishes a new element whenever the value changes.
+    // Value is stored(accessed through value property) and not discarded.
     var title = CurrentValueSubject<String, Never>("Test")
 
     func updateTitle(_ title: String) {
