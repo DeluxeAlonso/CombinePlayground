@@ -11,5 +11,6 @@
         <page name='CurrentValueSubject'/>
         <page name='Published'/>
         <page name='Just'/>
+        <page name='Publishers.Zip'/>
     </pages>
 </playground>
