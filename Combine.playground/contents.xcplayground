@@ -12,5 +12,6 @@
         <page name='Published'/>
         <page name='Just'/>
         <page name='Publishers.Zip'/>
+        <page name='Publishers.Merge'/>
     </pages>
 </playground>
