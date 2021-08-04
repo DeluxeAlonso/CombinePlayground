@@ -12,12 +12,9 @@ let secondPublisher = NotificationCenter.default.publisher(for: secondNotificati
 // TODO: - Merge implementation here
 
 let _ = Publishers.Merge(firstPublisher, secondPublisher)
-    .sink(receiveValue: { val in
+    .sink(receiveValue: { value in
         print("\(value) zipped")
     }).store(in: &cancellables)
-
-// Zip waits for the two zipped publishers to emit values,
-// otherwise it won't receive a new value
 
 print("Post first")
 NotificationCenter.default.post(firstNotification)
