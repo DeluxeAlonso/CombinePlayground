@@ -14,7 +14,7 @@ let secondPublisher = NotificationCenter.default.publisher(for: secondNotificati
 
 let _ = Publishers.Merge(firstPublisher, secondPublisher)
     .sink(receiveValue: { value in
-        print("\(value) zipped")
+        print("\(value) merged")
     }).store(in: &cancellables)
 
 let _ = firstPublisher.merge(with: secondPublisher)
