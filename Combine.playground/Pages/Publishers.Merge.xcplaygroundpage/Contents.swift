@@ -9,7 +9,7 @@ let firstPublisher = NotificationCenter.default.publisher(for: firstNotification
 let secondNotification = Notification(name: Notification.Name("second"))
 let secondPublisher = NotificationCenter.default.publisher(for: secondNotification.name)
 
-// Two ways to use zip: Publishers.Zip instance and Publisher's zip instance function.
+// Two ways to use zip: Publishers.Merge instance and Publisher's Merge instance function.
 // Both have the same behavior:
 
 let _ = Publishers.Merge(firstPublisher, secondPublisher)
