@@ -22,6 +22,8 @@ let _ = firstPublisher.merge(with: secondPublisher)
         print("\(value) merged - with Publisher's merge intance function")
     }.store(in: &cancellables)
 
+// Merge emits a value every time each of the publishers emits a new value.
+
 print("Post first")
 NotificationCenter.default.post(firstNotification)
 
