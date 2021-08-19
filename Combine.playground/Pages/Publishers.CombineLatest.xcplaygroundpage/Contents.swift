@@ -9,16 +9,17 @@ let firstPublisher = NotificationCenter.default.publisher(for: firstNotification
 let secondNotification = Notification(name: Notification.Name("second"))
 let secondPublisher = NotificationCenter.default.publisher(for: secondNotification.name)
 
-// TODO: - CombineLatest implementation
+// Two ways to use zip: Publishers.CombineLatest instance and Publisher's CombineLatest instance function.
+// Both have the same behavior:
 
 let _ = Publishers.CombineLatest(firstPublisher, secondPublisher)
     .sink(receiveValue: { value in
-        print("\(value) merged")
+        print("\(value) combined")
     }).store(in: &cancellables)
 
 let _ = firstPublisher.combineLatest(secondPublisher)
     .sink { value in
-        print("\(value) merged - with Publisher's merge intance function")
+        print("\(value) combined - with Publisher's combineLatest intance function")
     }.store(in: &cancellables)
 
 print("Post first")
@@ -29,6 +30,3 @@ NotificationCenter.default.post(secondNotification)
 
 print("Post third")
 NotificationCenter.default.post(firstNotification)
-
-//print("Post fourth")
-//NotificationCenter.default.post(secondNotification)
