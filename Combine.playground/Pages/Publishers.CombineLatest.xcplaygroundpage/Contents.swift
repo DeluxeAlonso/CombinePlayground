@@ -11,6 +11,16 @@ let secondPublisher = NotificationCenter.default.publisher(for: secondNotificati
 
 // TODO: - CombineLatest implementation
 
+let _ = Publishers.CombineLatest(firstPublisher, secondPublisher)
+    .sink(receiveValue: { value in
+        print("\(value) merged")
+    }).store(in: &cancellables)
+
+let _ = firstPublisher.combineLatest(secondPublisher)
+    .sink { value in
+        print("\(value) merged - with Publisher's merge intance function")
+    }.store(in: &cancellables)
+
 print("Post first")
 NotificationCenter.default.post(firstNotification)
 
@@ -20,5 +30,5 @@ NotificationCenter.default.post(secondNotification)
 print("Post third")
 NotificationCenter.default.post(firstNotification)
 
-print("Post fourth")
-NotificationCenter.default.post(secondNotification)
+//print("Post fourth")
+//NotificationCenter.default.post(secondNotification)
