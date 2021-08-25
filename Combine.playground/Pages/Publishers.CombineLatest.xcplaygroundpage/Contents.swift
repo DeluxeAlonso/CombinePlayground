@@ -22,6 +22,8 @@ let _ = firstPublisher.combineLatest(secondPublisher)
         print("\(value) combined - with Publisher's combineLatest intance function")
     }.store(in: &cancellables)
 
+// Emits the latest value of each publisher when one of them emits a new value.
+
 print("Post first")
 NotificationCenter.default.post(firstNotification)
 
