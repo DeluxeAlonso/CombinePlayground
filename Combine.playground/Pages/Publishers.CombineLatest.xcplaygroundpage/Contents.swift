@@ -34,3 +34,19 @@ NotificationCenter.default.post(secondNotification)
 
 print("Post third")
 NotificationCenter.default.post(firstNotification)
+
+// MARK: - Result
+
+/*
+ Post first
+ Post second
+ name = first, object = nil, userInfo = nil - first publisher - combineLatest
+ name = second, object = nil, userInfo = nil - second publisher - combineLatest
+ name = first, object = nil, userInfo = nil - first publisher - combineLatest - instance method
+ name = second, object = nil, userInfo = nil - second publisher - combineLatest - instance method
+ Post third
+ name = first, object = nil, userInfo = nil - first publisher - combineLatest
+ name = second, object = nil, userInfo = nil - second publisher - combineLatest
+ name = first, object = nil, userInfo = nil - first publisher - combineLatest - instance method
+ name = second, object = nil, userInfo = nil - second publisher - combineLatest - instance method
+ */
