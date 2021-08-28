@@ -35,3 +35,20 @@ NotificationCenter.default.post(firstNotification)
 
 print("Post fourth")
 NotificationCenter.default.post(secondNotification)
+
+// MARK: - Result
+
+/*
+ Post first
+ name = first, object = nil, userInfo = nil merged
+ name = first, object = nil, userInfo = nil merged - with Publisher's merge intance function
+ Post second
+ name = second, object = nil, userInfo = nil merged
+ name = second, object = nil, userInfo = nil merged - with Publisher's merge intance function
+ Post third
+ name = first, object = nil, userInfo = nil merged
+ name = first, object = nil, userInfo = nil merged - with Publisher's merge intance function
+ Post fourth
+ name = second, object = nil, userInfo = nil merged
+ name = second, object = nil, userInfo = nil merged - with Publisher's merge intance function
+ */
