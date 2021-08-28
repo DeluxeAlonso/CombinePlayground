@@ -37,6 +37,19 @@ NotificationCenter.default.post(firstNotification)
 print("Post fourth")
 NotificationCenter.default.post(secondNotification)
 
+// MARK: - Result
+
+/*
+ Post first
+ Post second
+ (name = first, object = nil, userInfo = nil, name = second, object = nil, userInfo = nil) zipped
+ (name = first, object = nil, userInfo = nil, name = second, object = nil, userInfo = nil) zipped - with Publisher's zip intance function
+ Post third
+ Post fourth
+ (name = first, object = nil, userInfo = nil, name = second, object = nil, userInfo = nil) zipped
+ (name = first, object = nil, userInfo = nil, name = second, object = nil, userInfo = nil) zipped - with Publisher's zip intance function
+ */
+
 // MARK: - Publishers.Zip Order matching behavior
 
 // Zip handles the emitted values in order. The first value of the first publisher
@@ -56,3 +69,4 @@ publisherA.value = 3
 
 publisherB.value = 1
 publisherB.value = 2
+
