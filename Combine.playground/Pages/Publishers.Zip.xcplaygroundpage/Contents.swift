@@ -70,3 +70,10 @@ publisherA.value = 3
 publisherB.value = 1
 publisherB.value = 2
 
+// MARK: - Result
+
+/*
+ (0, 0)
+ (1, 1)
+ (2, 2)
+ */
