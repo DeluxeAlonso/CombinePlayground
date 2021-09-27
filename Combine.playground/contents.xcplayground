@@ -14,5 +14,6 @@
         <page name='Publishers.Zip'/>
         <page name='Publishers.Merge'/>
         <page name='Publishers.CombineLatest'/>
+        <page name='Simple Networking'/>
     </pages>
 </playground>
