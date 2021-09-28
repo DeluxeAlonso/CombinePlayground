@@ -27,4 +27,10 @@ func fetchL<T: Decodable>(_ url: URL,
 
 // MARK: - Combine approach
 
-
+func fetch<T: Decodable>(_ url: URL) -> AnyPublisher<T, Error> {
+    URLSession.shared.dataTaskPublisher(for: url)
+        .tryMap({ result in
+            return try JSONDecoder().decode(T.self, from: result.data)
+        })
+        .eraseToAnyPublisher()
+}
