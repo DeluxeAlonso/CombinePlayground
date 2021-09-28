@@ -3,8 +3,8 @@ import Combine
 
 // MARK: - Non-combine approach
 
-func fetchURL<T: Decodable>(_ url: URL,
-                            completion: @escaping (Result<T, Error>) -> Void) {
+func fetchL<T: Decodable>(_ url: URL,
+                          completion: @escaping (Result<T, Error>) -> Void) {
     URLSession.shared.dataTask(with: url) { data, response, error in
         if let error = error {
             completion(.failure(error))
@@ -12,7 +12,7 @@ func fetchURL<T: Decodable>(_ url: URL,
         }
 
         guard let data = data else {
-            // This should never happen
+            assertionFailure("This should never happen")
             return
         }
 
@@ -24,3 +24,7 @@ func fetchURL<T: Decodable>(_ url: URL,
         }
     }.resume()
 }
+
+// MARK: - Combine approach
+
+
