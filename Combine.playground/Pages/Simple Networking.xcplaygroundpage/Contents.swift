@@ -34,3 +34,18 @@ func fetch<T: Decodable>(_ url: URL) -> AnyPublisher<T, Error> {
         })
         .eraseToAnyPublisher()
 }
+
+struct TestModel: Decodable {}
+
+var cancellables = Set<AnyCancellable>()
+let url = URL(string: "https://www.google.com")
+let publisher: AnyPublisher<TestModel, Error> = fetch(url!)
+    .share() // Share allows the publisher to be instantiated and only fetch once.
+    .eraseToAnyPublisher()
+
+publisher
+    .sink(receiveCompletion: { completion in
+        print(completion) // Should print an error
+    }, receiveValue: { (model: TestModel) in
+        print(model)
+    }).store(in: &cancellables)
