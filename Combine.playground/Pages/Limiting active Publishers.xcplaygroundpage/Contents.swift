@@ -3,6 +3,9 @@ import Combine
 [1, 2, 3].publisher
     .print()
     .flatMap({ int in
+        // flatMap takes the output of a publisher, transforms that into a new
+        // publisher and all values emitted by that new publisher are passed to
+        // subscribers
         return Array(repeating: int, count: 2).publisher
     })
     .sink(receiveValue: { value in
@@ -18,5 +21,5 @@ import Combine
         return Array(repeating: int, count: 2).publisher
     })
     .sink(receiveValue: { value in
-        print("got: \(value)")
+        print("got - maxPublishers 1: \(value)")
     })
