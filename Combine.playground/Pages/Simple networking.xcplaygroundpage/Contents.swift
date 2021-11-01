@@ -3,7 +3,7 @@ import Combine
 
 // MARK: - Non-combine approach
 
-func fetchL<T: Decodable>(_ url: URL,
+func fetch<T: Decodable>(_ url: URL,
                           completion: @escaping (Result<T, Error>) -> Void) {
     URLSession.shared.dataTask(with: url) { data, response, error in
         if let error = error {
@@ -27,7 +27,7 @@ func fetchL<T: Decodable>(_ url: URL,
 
 // MARK: - Combine approach
 
-func fetch<T: Decodable>(_ url: URL) -> AnyPublisher<T, Error> {
+func fetchCombine<T: Decodable>(_ url: URL) -> AnyPublisher<T, Error> {
     URLSession.shared.dataTaskPublisher(for: url)
         .tryMap({ result in
             return try JSONDecoder().decode(T.self, from: result.data)
@@ -35,17 +35,27 @@ func fetch<T: Decodable>(_ url: URL) -> AnyPublisher<T, Error> {
         .eraseToAnyPublisher()
 }
 
+// MARK: - Combine - Decode operator approach
+
+// Decode operator works on any publisher that has Data as its output.
+func fetchCombineDecode<T: Decodable>(_ url: URL) -> AnyPublisher<T, Error> {
+    URLSession.shared.dataTaskPublisher(for: url)
+        .map(\.data)
+        .decode(type: T.self, decoder: JSONDecoder())
+        .eraseToAnyPublisher()
+}
+
 struct TestModel: Decodable {}
 
 var cancellables = Set<AnyCancellable>()
 let url = URL(string: "https://www.google.com")
-let publisher: AnyPublisher<TestModel, Error> = fetch(url!)
+let publisher: AnyPublisher<TestModel, Error> = fetchCombineDecode(url!)
     .share() // Share allows the publisher to be instantiated and only fetch once.
     .eraseToAnyPublisher()
 
 publisher
     .sink(receiveCompletion: { completion in
-        print(completion) // Should print an error
+        print(completion) // Should print an error because no valid json is received
     }, receiveValue: { (model: TestModel) in
         print(model)
     }).store(in: &cancellables)
