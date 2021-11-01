@@ -51,6 +51,10 @@ var baseURL = URL(string: "https://www.google.com")!
     .map({ path in
         let url = baseURL.appendingPathComponent(path)
         return URLSession.shared.dataTaskPublisher(for: url)
+
+        // The values that end up in the sink are not the results of the data tasks.
+        // Instead, the publishers themselves are delivered to the sink.
+        // Map is not useful in this scenario
     })
     .sink { completion in
         print("Completed with: \(completion)")
