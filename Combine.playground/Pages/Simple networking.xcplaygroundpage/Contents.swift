@@ -4,7 +4,7 @@ import Combine
 // MARK: - Non-combine approach
 
 func fetch<T: Decodable>(_ url: URL,
-                          completion: @escaping (Result<T, Error>) -> Void) {
+                         completion: @escaping (Result<T, Error>) -> Void) {
     URLSession.shared.dataTask(with: url) { data, response, error in
         if let error = error {
             completion(.failure(error))
