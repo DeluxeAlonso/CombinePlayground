@@ -14,7 +14,8 @@
         <page name='Publishers.Zip'/>
         <page name='Publishers.Merge'/>
         <page name='Publishers.CombineLatest'/>
-        <page name='Simple Networking'/>
-        <page name='Decode Operator'/>
+        <page name='Decode operator'/>
+        <page name='Simple networking'/>
+        <page name='Error handling in networking'/>
     </pages>
 </playground>
