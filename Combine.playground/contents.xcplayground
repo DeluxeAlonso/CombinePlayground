@@ -17,5 +17,6 @@
         <page name='Decode operator'/>
         <page name='Simple networking'/>
         <page name='Error handling in networking'/>
+        <page name='Unit testing'/>
     </pages>
 </playground>
