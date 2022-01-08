@@ -89,6 +89,21 @@ class JobsViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
     }
 
+    func testGetJobsEmpty() {
+        // Arrange
+        let jobsToTest: [Job] = []
+        let expectation = XCTestExpectation(description: "State is set to empty")
+        // Act
+        viewModelToTest.$viewState.dropFirst().sink { state in
+            state == .empty ? expectation.fulfill() : XCTFail("State wasn't set to empty")
+        }.store(in: &cancellables)
+
+        mockJobClient.fetchJobsResult = Result.success(jobsToTest).publisher.eraseToAnyPublisher()
+        viewModelToTest.loadJobs()
+        // Assert
+        wait(for: [expectation], timeout: 1)
+    }
+
 }
 
 JobsViewModelTests.defaultTestSuite.run()
