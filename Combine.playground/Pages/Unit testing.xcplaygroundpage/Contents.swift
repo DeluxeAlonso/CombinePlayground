@@ -75,10 +75,10 @@ class JobsViewModelTests: XCTestCase {
     }
 
     func testGetJobsPopulated() {
-        // Arrange
+
         let jobsToTest = [Job(id: "1", title: "title", description: "desc")]
         let expectation = XCTestExpectation(description: "State is set to populated")
-        // Act
+
         viewModelToTest.$viewState.dropFirst().sink { state in
             XCTAssertEqual(state, .populated)
             expectation.fulfill()
@@ -86,15 +86,14 @@ class JobsViewModelTests: XCTestCase {
 
         mockJobClient.fetchJobsResult = Result.success(jobsToTest).publisher.eraseToAnyPublisher()
         viewModelToTest.loadJobs()
-        // Assert
+
         wait(for: [expectation], timeout: 1)
     }
 
     func testGetJobsEmpty() {
-        // Arrange
         let jobsToTest: [Job] = []
         let expectation = XCTestExpectation(description: "State is set to empty")
-        // Act
+
         viewModelToTest.$viewState.dropFirst().sink { state in
             XCTAssertEqual(state, .empty)
             expectation.fulfill()
@@ -102,7 +101,7 @@ class JobsViewModelTests: XCTestCase {
 
         mockJobClient.fetchJobsResult = Result.success(jobsToTest).publisher.eraseToAnyPublisher()
         viewModelToTest.loadJobs()
-        // Assert
+
         wait(for: [expectation], timeout: 1)
     }
 
