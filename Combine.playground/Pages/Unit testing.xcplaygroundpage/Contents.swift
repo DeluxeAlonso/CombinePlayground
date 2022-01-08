@@ -19,7 +19,6 @@ class MockJobClient: JobClientProtocol {
 }
 
 class JobsViewModel {
-
     private let client: JobClientProtocol
 
     init(client: JobClientProtocol) {
@@ -51,12 +50,10 @@ class JobsViewModel {
                 return Just(.error(error))
             }.assign(to: &$viewState)
     }
-
 }
 
 
 class JobsViewModelTests: XCTestCase {
-
     private var mockJobClient: MockJobClient!
     private var viewModelToTest: JobsViewModel!
 
@@ -104,7 +101,6 @@ class JobsViewModelTests: XCTestCase {
 
         wait(for: [expectation], timeout: 1)
     }
-
 }
 
 JobsViewModelTests.defaultTestSuite.run()
