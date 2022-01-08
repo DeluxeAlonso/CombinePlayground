@@ -57,17 +57,19 @@ class JobsViewModelTests: XCTestCase {
     private var mockJobClient: MockJobClient!
     private var viewModelToTest: JobsViewModel!
 
-    private var cancellables: Set<AnyCancellable> = []
+    private var cancellables: Set<AnyCancellable>!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
         mockJobClient = MockJobClient()
         viewModelToTest = JobsViewModel(client: mockJobClient)
+        cancellables = []
     }
 
     override func tearDownWithError() throws {
         mockJobClient = nil
         viewModelToTest = nil
+        cancellables = nil
         try super.tearDownWithError()
     }
 
