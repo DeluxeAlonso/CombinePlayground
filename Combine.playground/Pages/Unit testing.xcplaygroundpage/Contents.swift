@@ -80,7 +80,8 @@ class JobsViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "State is set to populated")
         // Act
         viewModelToTest.$viewState.dropFirst().sink { state in
-            state == .populated ? expectation.fulfill() : XCTFail("State wasn't set to populated")
+            XCTAssertEqual(state, .populated)
+            expectation.fulfill()
         }.store(in: &cancellables)
 
         mockJobClient.fetchJobsResult = Result.success(jobsToTest).publisher.eraseToAnyPublisher()
@@ -95,7 +96,8 @@ class JobsViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "State is set to empty")
         // Act
         viewModelToTest.$viewState.dropFirst().sink { state in
-            state == .empty ? expectation.fulfill() : XCTFail("State wasn't set to empty")
+            XCTAssertEqual(state, .empty)
+            expectation.fulfill()
         }.store(in: &cancellables)
 
         mockJobClient.fetchJobsResult = Result.success(jobsToTest).publisher.eraseToAnyPublisher()
