@@ -21,11 +21,11 @@ func fetch<T: Decodable>(_ url: URL) -> AnyPublisher<T, Error> {
 }
 
 var cancellables = Set<AnyCancellable>()
-let url = URL(string: "https://www.google.com")
+let url = URL(string: "https://www.google.com")!
 
 struct TestModel: Decodable {}
 
-fetch(url!)
+fetch(url)
     .sink(receiveCompletion: { completion in
         if case .failure(let error) = completion,
            let error = error as? CustomError {
