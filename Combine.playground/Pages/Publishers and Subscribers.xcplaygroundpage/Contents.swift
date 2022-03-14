@@ -8,6 +8,10 @@ import Combine
     print(value)
 }
 
+["1","2","3"].publisher.combineLatest(["4", "5", "6"].publisher).sink { value in
+    print(value.0 + value.1)
+}
+
 // MARK: - Handling errors
 
 [1, 2, 3].publisher.sink(receiveCompletion: { completion in
