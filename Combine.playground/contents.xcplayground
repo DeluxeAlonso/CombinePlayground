@@ -18,5 +18,6 @@
         <page name='Simple networking'/>
         <page name='Error handling in networking'/>
         <page name='Unit testing'/>
+        <page name='@Published vs CurrentValueSubject'/>
     </pages>
 </playground>
