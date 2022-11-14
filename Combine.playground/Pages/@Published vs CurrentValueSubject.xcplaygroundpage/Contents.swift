@@ -16,6 +16,8 @@ viewModel.currentValueSubjectTitle.sink(receiveValue: { value in
 })
 
 viewModel.$publishedTitle.sink(receiveValue: { value in
-    print("@Published - Same emitted value and unerlying value? \(viewModel.currentValueSubjectTitle.value == value)")
+    print("@Published - Same emitted value and unerlying value? \(viewModel.publishedTitle == value)")
 })
 
+viewModel.currentValueSubjectTitle.value = "New title"
+viewModel.publishedTitle = "New title"
